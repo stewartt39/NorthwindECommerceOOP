@@ -1,0 +1,19 @@
+﻿@model Northwind.Entities.Concrete.Cart
+<style>
+    #cart {
+        background: round;
+        color: black;
+        border: 2px solid red;
+        border-radius: 3px;
+        padding: 10px 10px 10px 10px;
+
+    }
+</style>
+@*Sepetin Index sayfasındaki görünümü*@
+<div id="cart">
+
+    <img src="~/Content/Cart-PNG-Image.png" width="50" height="50" /><br />
+    Sepetiniz <strong>(@Model.Lines.Sum(x => x.Quantity))</strong> adet <br /> Tutar:
+    <strong> @Model.Total.ToString("c")</strong> 'dir
+</div>
+

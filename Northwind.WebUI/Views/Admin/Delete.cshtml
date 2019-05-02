@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Are you sure want to delete this?</h2>
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input  type="submit" value="Delete"/>
+}
+

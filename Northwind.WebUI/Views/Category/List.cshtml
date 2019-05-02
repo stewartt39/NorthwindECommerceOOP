@@ -1,0 +1,24 @@
+﻿@using Northwind.Entities.Concrete
+@model List<Category>
+
+<style>
+    .selected{
+        background:black;
+        
+    }
+</style>
+
+<ul class="list-group">
+
+    <li class="list-group-item">@Html.ActionLink("All Products","Index","Product",null,new {@class=ViewBag.CurrentCategory==0?"list-group-item active" :null })</li>
+    @foreach (var category in Model)
+    {
+        //Viewbag ile view a veri taşıdık:)
+        //HtmlHelper larından RouteLinkten faydalandık.Parametrelere göre:
+        //Link text=Databasedeki Kategori adı 
+        //Route olacağı parametre değişkeni categoryid ve bu categoryid aslında veritabanındaki categoryID ye eşit
+        //Product Controller 'ın Index^'ine gidecek ki seçtiğimiz kategoriye göre listeleme yapsın
+        <li class="list-group-item">@Html.RouteLink(category.CategoryName,new { categoryid = category.CategoryID, controller = "Product", action = "Index" },new {@class=category.CategoryID==ViewBag.CurrentCategory?"list-group-item active":null })</li>
+
+    }
+</ul>

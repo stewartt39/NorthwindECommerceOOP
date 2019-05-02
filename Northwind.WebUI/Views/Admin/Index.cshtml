@@ -1,0 +1,42 @@
+﻿@*Ürünleri listeleyeceğimiz için model olarak Product ı IEnumarable olarak döndürürüz*@
+@model IEnumerable<Northwind.Entities.Concrete.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>İşlemler</th>
+    </tr>
+  
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @*//Edit ve Delete operasyonlarında hangi ürünü editleyeceğimizi veya hangi ürünü sileceğimizi yazılıma tanıtmak için produtId değişkenini ürünün id sine eşitledik.Delete ve Update controllerlarında da bu parametreleri verdik ki asp.net in model binding i sayesinde yazılım gönderdiğimiz parametreyi productId olarak tanıyacak ve ona göre istediğimiz kayda gidebileceğiz.*@
+            @Html.ActionLink("Edit", "Edit", new { productId=item.ProductID}) |
+           
+            @Html.ActionLink("Delete", "Delete", new {productId=item.ProductID})
+        </td>
+    </tr>
+}
+
+</table>
