@@ -1,0 +1,14 @@
+﻿@model Northwind.Entities.Concrete.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    @Html.EditorForModel();
+    <input type="submit" value="Giriş Yap" />
+}
+

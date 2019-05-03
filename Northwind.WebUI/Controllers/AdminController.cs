@@ -8,8 +8,10 @@ using System.Web.Mvc;
 
 namespace Northwind.WebUI.Controllers
 {
+
     public class AdminController : Controller
     {
+        
         // GET: Admin
         //Data katmanına direkt erişemediğimiz için business katmanına erişmemiz lazım.Business katmanı da Interface ler katmanının serviceleriyle enjekte edilir.
         private IProductService _productService;
@@ -19,13 +21,16 @@ namespace Northwind.WebUI.Controllers
             _productService = productService;
         }
         //Listeleme aksiyonu getall ile çağrılır.
+        
         public ActionResult Index()
         {
             return View(_productService.GetAll());
         }
         //Yeni ürün ekleme operasyonunun httpget metodu
+        [Authorize]
         public ActionResult Create()
         {
+            ViewData["username"] = User.Identity.Name;
             return View(new Product());
         }
         //Eğer model doğru ise product service in add metodu çağrılır ve gönderdiğimiz product kaydedilir.

@@ -24,6 +24,7 @@ namespace Northwind.WebUI.Infrastructure
         {
             _ninjectKernel.Bind<IProductService>().To<ProductManager>().WithConstructorArgument("productDal",new EfProductDal());
             _ninjectKernel.Bind<ICategoryService>().To<CategoryManager>().WithConstructorArgument("categoryDal", new EfCategoryDal());
+            _ninjectKernel.Bind<IAuthenticationService>().To<AuthenticationManager>().WithConstructorArgument("authorizationDal", new EfAuthenticationDal());
         }
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
