@@ -1,4 +1,5 @@
-﻿using Northwind.Entities.Concrete;
+﻿using Northwind.DataAccessLayer.Abstract;
+using Northwind.Entities.Concrete;
 using Northwind.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,24 @@ namespace Northwind.BusinessLogicLayer.Concrete
 {
     public class AuthenticationManager : IAuthenticationService
     {
+        private IAuthenticateDal _authenticateDal;
+        public AuthenticationManager(IAuthenticateDal authenticateDal)
+        {
+            _authenticateDal = authenticateDal;
+        }
         public bool IsValid(User user)
         {
-            if(user.UserName == "emre" && user.Password == "123456")
+            if (_authenticateDal.IsValid(user))
             {
                 return true;
-
             }
             else
             {
                 return false;
             }
-
+            
         }
+
+       
     }
 }
